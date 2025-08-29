@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,55 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Play, Code, Heart, Star, Users, Trophy } from "lucide-react";
 import heroBackground from "@/assets/hero-gaming-bg.jpg";
 import gamingMascot from "@/assets/gaming-mascot.png";
-
-const StatsCard = memo(({ icon: Icon, label, value }: { icon: any, label: string, value: string }) => (
-  <div className="text-center space-y-2">
-    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-gaming-primary rounded-full gaming-glow animate-gaming-pulse">
-      <Icon className="w-8 h-8 text-foreground" />
-    </div>
-    <p className="text-2xl sm:text-3xl font-bold text-gradient-gaming">{value}</p>
-    <p className="text-muted-foreground">{label}</p>
-  </div>
-));
-
-const GameCard = memo(({ game }: { game: any }) => (
-  <Card className="group gaming-hover overflow-hidden">
-    <div className="aspect-video bg-gradient-gaming-primary relative overflow-hidden">
-      <img 
-        src={game.image} 
-        alt={game.title}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
-      <Button 
-        variant="gaming" 
-        size="sm" 
-        className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-      >
-        <Play className="w-4 h-4 mr-1" />
-        Play
-      </Button>
-    </div>
-    <CardHeader>
-      <div className="flex items-center justify-between">
-        <Badge variant="secondary">{game.genre}</Badge>
-        <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-          <Star className="w-4 h-4 text-accent fill-current" />
-          <span>{game.rating}</span>
-        </div>
-      </div>
-      <CardTitle>{game.title}</CardTitle>
-      <CardDescription>{game.description}</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <div className="flex items-center justify-between text-sm text-muted-foreground">
-        <span>{game.players} players</span>
-        <Button variant="ghost" size="sm">Learn More</Button>
-      </div>
-    </CardContent>
-  </Card>
-));
 
 const Index = () => {
   const featuredGames = [
@@ -67,7 +17,7 @@ const Index = () => {
       players: "1.2K",
     },
     {
-      title: "Space Explorer", 
+      title: "Space Explorer",
       description: "Explore vast galaxies in this epic space adventure",
       image: "/placeholder.svg",
       genre: "Adventure",
@@ -76,7 +26,7 @@ const Index = () => {
     },
     {
       title: "Puzzle Master",
-      description: "Mind-bending puzzles that challenge your creativity", 
+      description: "Mind-bending puzzles that challenge your creativity",
       image: "/placeholder.svg",
       genre: "Puzzle",
       rating: 4.7,
@@ -149,7 +99,15 @@ const Index = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <StatsCard key={index} {...stat} />
+              <div key={index} className="text-center space-y-2">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-gaming-primary rounded-full gaming-glow animate-gaming-pulse">
+                  <stat.icon className="w-8 h-8 text-foreground" />
+                </div>
+                <p className="text-2xl sm:text-3xl font-bold text-gradient-gaming">
+                  {stat.value}
+                </p>
+                <p className="text-muted-foreground">{stat.label}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -169,13 +127,51 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredGames.map((game, index) => (
-              <GameCard key={index} game={game} />
+              <Card key={index} className="group gaming-hover overflow-hidden">
+                <div className="aspect-video bg-gradient-gaming-primary relative overflow-hidden">
+                  <img 
+                    src={game.image} 
+                    alt={game.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                  <Button 
+                    variant="gaming" 
+                    size="sm" 
+                    className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <Play className="w-4 h-4 mr-1" />
+                    Play
+                  </Button>
+                </div>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary">{game.genre}</Badge>
+                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                      <Star className="w-4 h-4 text-accent fill-current" />
+                      <span>{game.rating}</span>
+                    </div>
+                  </div>
+                  <CardTitle>{game.title}</CardTitle>
+                  <CardDescription>{game.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <span>{game.players} players</span>
+                    <Button variant="ghost" size="sm">
+                      Learn More
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
           <div className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
-              <Link to="/games">View All Games</Link>
+              <Link to="/games">
+                View All Games
+              </Link>
             </Button>
           </div>
         </div>
@@ -201,7 +197,9 @@ const Index = () => {
                 Start Playing Now
               </Button>
               <Button variant="ghost" size="lg" className="text-foreground hover:bg-foreground/10" asChild>
-                <Link to="/contact">Get in Touch</Link>
+                <Link to="/contact">
+                  Get in Touch
+                </Link>
               </Button>
             </div>
           </div>
