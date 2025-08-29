@@ -26,11 +26,29 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					glow: 'hsl(var(--primary-glow))',
+					dark: 'hsl(var(--primary-dark))',
+					foreground: 'hsl(var(--foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					glow: 'hsl(var(--secondary-glow))',
+					foreground: 'hsl(var(--foreground))'
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					glow: 'hsl(var(--accent-glow))',
+					foreground: 'hsl(var(--foreground))'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning))',
+					glow: 'hsl(var(--warning-glow))',
+					foreground: 'hsl(var(--foreground))'
+				},
+				success: {
+					DEFAULT: 'hsl(var(--success))',
+					glow: 'hsl(var(--success-glow))',
+					foreground: 'hsl(var(--foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -40,10 +58,6 @@ export default {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
 				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
-				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
@@ -52,16 +66,18 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+			},
+			backgroundImage: {
+				'gradient-gaming-hero': 'var(--gradient-gaming-hero)',
+				'gradient-gaming-primary': 'var(--gradient-gaming-primary)',
+				'gradient-gaming-secondary': 'var(--gradient-gaming-secondary)',
+				'gradient-gaming-accent': 'var(--gradient-gaming-accent)',
+			},
+			boxShadow: {
+				'gaming-glow': 'var(--shadow-gaming-glow)',
+				'gaming-hover': 'var(--shadow-gaming-hover)',
+				'secondary-glow': 'var(--shadow-secondary-glow)',
+				'accent-glow': 'var(--shadow-accent-glow)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -88,7 +104,10 @@ export default {
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'gaming-pulse': 'gaming-pulse 2s ease-in-out infinite',
+				'gaming-float': 'gaming-float 3s ease-in-out infinite',
+				'gaming-rotate': 'gaming-rotate 20s linear infinite',
 			}
 		}
 	},
