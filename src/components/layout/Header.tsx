@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Gamepad2 } from "lucide-react";
@@ -6,6 +6,14 @@ import { Menu, X, Gamepad2 } from "lucide-react";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -56,7 +64,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
           >
             {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
@@ -74,7 +82,7 @@ const Header = () => {
                     ? "text-primary bg-primary/10"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
               >
                 {item.label}
               </Link>
